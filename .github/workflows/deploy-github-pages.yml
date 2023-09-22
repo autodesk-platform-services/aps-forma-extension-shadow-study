@@ -1,0 +1,52 @@
+name: Run tests, build static files and deploy to GitHub Pages
+
+on: [workflow_dispatch, push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - run: yarn install --frozen-lockfile
+      - run: yarn typecheck
+      - run: yarn prettier --check src
+      - run: yarn build
+        if: github.ref != 'refs/heads/main'
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Build static files
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+      - uses: actions/configure-pages@v3
+      - name: Upload static files to GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "dist"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

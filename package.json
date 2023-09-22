@@ -1,0 +1,27 @@
+{
+  "name": "shadow-study",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "DEV_SERVER=1 vite",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "forma-embedded-view-sdk": "^0.10.2",
+    "jszip": "3.10.1",
+    "lodash": "^4.17.21",
+    "preact": "^10.17.1",
+    "goober": "^2.1.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "@types/file-saver": "^2.0.2",
+    "@types/lodash": "4.14.198",
+    "prettier": "3.0.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
