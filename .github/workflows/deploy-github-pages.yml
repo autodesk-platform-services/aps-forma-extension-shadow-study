@@ -16,22 +16,13 @@ jobs:
       - run: yarn build
         if: github.ref != 'refs/heads/main'
 
-  deploy:
+  build:
     if: github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
 
     permissions:
       contents: read
-      pages: write
-      id-token: write
-
-    concurrency:
-      group: "pages"
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v3
@@ -46,7 +37,22 @@ jobs:
       - name: Upload static files to GitHub Pages
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "./dist"
+          path: "dist"
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
