@@ -2,7 +2,7 @@ import { Forma } from "forma-embedded-view-sdk/auto";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
 import { MONTHS } from "../utils";
-import { Button } from "../styles";
+import { PrimaryButton, Row } from "../styles";
 
 const getFileName = (date: Date) => {
   return "Shadow study - " + date.getDate() + " " + MONTHS[date.getMonth()] + ".zip";
@@ -55,5 +55,11 @@ export default function ExportButton(props: ExportButtonProps) {
     }
   };
 
-  return <Button onClick={onClickExport}>Export images</Button>;
+  return (
+    <Row>
+      <PrimaryButton category={"primary"} onClick={onClickExport}>
+        Export images
+      </PrimaryButton>
+    </Row>
+  );
 }

@@ -5,6 +5,7 @@ import IntervalSelector from "./components/IntervalSelector";
 import ResolutionSelector from "./components/ResolutionSelector";
 import TimeSelector from "./components/TimeSelector";
 import { Header } from "./styles";
+import PreviewButton from "./components/PreviewButton";
 
 export default function App() {
   const [month, setMonth] = useState(6);
@@ -32,6 +33,15 @@ export default function App() {
       />
       <IntervalSelector interval={interval} setInterval={setInterval} />
       <ResolutionSelector resolution={resolution} setResolution={setResolution} />
+      <PreviewButton
+        month={month}
+        day={day}
+        startHour={startHour}
+        startMinute={startMinute}
+        endHour={endHour}
+        endMinute={endMinute}
+        interval={interval}
+      />
       <ExportButton
         month={month}
         day={day}

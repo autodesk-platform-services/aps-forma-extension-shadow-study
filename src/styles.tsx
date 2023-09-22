@@ -76,10 +76,18 @@ export const Button = styled("button")`
   font-size: 12px;
   line-height: 16px;
 
-  color: #ffffff;
-  background-color: #0696d7;
-
-  border: 1px solid #80808000;
   border-radius: 2px;
   cursor: pointer;
+`;
+
+export const PrimaryButton = styled(Button)`
+  color: #ffffff;
+  background-color: #0696d7;
+  border: 1px solid #80808000;
+`;
+
+export const SecondaryButton = styled(Button)`
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #80808080;
 `;
