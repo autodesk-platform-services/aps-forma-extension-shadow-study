@@ -18,7 +18,6 @@ jobs:
 
   build:
     if: github.ref == 'refs/heads/main'
-    needs: test
     runs-on: ubuntu-latest
 
     permissions:
@@ -41,7 +40,7 @@ jobs:
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: [test, build]
     runs-on: ubuntu-latest
 
     permissions:
