@@ -27,7 +27,7 @@ jobs:
       id-token: write
 
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: "pages"
 
     environment:
       name: github-pages
@@ -46,7 +46,7 @@ jobs:
       - name: Upload static files to GitHub Pages
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "dist"
+          path: "./dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
