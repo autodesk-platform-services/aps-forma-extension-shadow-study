@@ -1,4 +1,4 @@
-# Shadow study: an example extension for Autodesk Forma
+# Shadow study: example extension for Autodesk Forma
 
 This extension is built using the
 **[Forma SDK for Javascript](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/intro/h)**
