@@ -10,6 +10,17 @@ Until it is published, this extension can be accessed by pasting the extension
 ID `4aff4df1-dcd1-422b-94ca-0d1bb776cf18` under the _**Unpublished**_ tab of the
 Forma extensions menu.
 
+- [Motivation](#motivation)
+- [How was this built](#how-was-this-built)
+  - [File structure](#file-structure)
+  - [Core logic](#core-logic)
+    - [State management and main components](#state-management-and-main-components)
+    - [Using the Forma API](#using-the-forma-api)
+    - [TODO: Styling](#todo-styling)
+- [Local testing](#local-testing)
+- [Contributing](#contributing)
+  - [Suggestions for improvements](#suggestions-for-improvements)
+
 ## Motivation
 
 The shadow study extension lets the user select a time range, date and inverval
@@ -171,7 +182,7 @@ also store the snapshots using `Forma.camera.capture()` and download a compresse
 
 #### TODO: Styling
 
-### Local testing
+## Local testing
 
 In order to work with this extension locally, make sure you have the
 [local testing extension](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/local-testing-extension/)
@@ -191,11 +202,11 @@ Your local version of this extension should now be running on port `8081`, and
 the content should be available by clicking the _**Local testing**_ icon the
 right hand side analysis menu in Forma.
 
-### Contributing
+## Contributing
 
 We welcome pull requests with suggestions for improvements from all contributors!
 
-#### Suggestions for improvements
+### Suggestions for improvements
 
 - Loop over several dates at once
 - Set the terrain texture to a background color of the user's choice
