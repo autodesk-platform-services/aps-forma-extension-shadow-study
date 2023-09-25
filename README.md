@@ -1,24 +1,181 @@
-# This is an example extension for Autodesk Forma
+# Shadow study: an example extension for Autodesk Forma
 
-This extension is built using the **[Forma SDK for Javascript](https://aps-dev.autodesk.com/en/docs/forma/v1/reference/embedded-view-sdk/)** using an `Embedded View` in the `Right hand side analysis panel`
+This extension is built using the
+**[Forma SDK for Javascript](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/intro/h)**
+using an _**Embedded View**_ in the _**Right hand side analysis panel**_.
+We recommend checking out the link to learn more about creating extensions and
+to access the full API reference of the SDK.
 
-**What it does:** Lets the user select a time range, date, and inverval to generate a shadow study consisting of screenshots of the proposal with selected sun positions.
+Until it is published, this extension can be accessed by pasting the extension
+ID `4aff4df1-dcd1-422b-94ca-0d1bb776cf18` under the _**Unpublished**_ tab of the
+Forma extensions menu.
 
-### How was this built
+## Motivation
 
-The extension was originally built as a
-[slimmed down version](https://github.com/spacemakerai/forma-extensions-samples/tree/main/analyses/shadow-study-slim)
-with the bare minimum required to get it up and running. In the current version,
-it has been rewritten in a [vite](https://vitejs.dev/) +
+The shadow study extension lets the user select a time range, date and inverval
+to generate a shadow study consisting of screenshots of the proposal at
+selected sun positions for the given times. This is a typical workflow for many
+architects which can be time-consuming to do with traditional tools.
+
+![Shadow study illustration screenshot](/assets/Screenshot.png)
+
+#### TODO: replace image when proper styling is in place
+
+## How was this built
+
+The extension was built in a [vite](https://vitejs.dev/) +
 [preact](https://preactjs.com/) framework to enable
-[typescript](https://www.typescriptlang.org/), [React components](https://react.dev/)
-and other features which are typical in a modern web developers toolbox.
+[typescript](https://www.typescriptlang.org/),
+[React components](https://react.dev/) and other features which are typical in a
+modern web developers toolbox.
 
-We refer to the slimmed down version's [README](https://github.com/spacemakerai/forma-extensions-samples/tree/main/analyses/shadow-study-slim/readme.md) for an explanation of the core functionality of the extension.
+### File structure
+
+Most of the top-level files in this repository are configurators etc. All source
+code is in the `src/` directory, but the entry-point for our extension is
+`index.html`. The only interesting thing in it are the lines which include the
+main typescript file:
+
+```html
+<body>
+  <div id="app"></div>
+  <script type="module" src="./src/main.tsx"></script>
+</body>
+```
+
+In `src/main.tsx`, we just use `preact` to render the `<App />` component
+defined in `src/app.tsx`. For most intents, the latter file is a useful starting
+point for making changes to the extension:
+
+All subcomponents used within the app live in
+`src/components/`, while style definitions reside in `src/styles.tsx`.
+
+It is also worth noting that the Forma SDK is added as a dependency in `package.json` and automatically installed by using `yarn`:
+
+```json
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "forma-embedded-view-sdk": "^0.10.2",
+    "jszip": "3.10.1",
+    "lodash": "^4.17.21",
+    "preact": "^10.17.1",
+    "goober": "^2.1.0"
+  },
+```
+
+### Core logic
+
+In this section we will exemplify core logic of the extension, but please head
+directly to the file tree to get a full overview.
+
+#### State management and main components
+
+After some imports, the `App` component is defined:
+
+```ts
+import { useState } from "preact/hooks";
+import DateSelector from "./components/DateSelector";
+import { Header } from "./styles";
+// ...more imports
+
+export default function App() {
+  const [month, setMonth] = useState(6);
+  //... more state setup
+
+  return (
+    <>
+      <Header>Shadow study</Header>
+      <DateSelector month={month} setMonth={setMonth} day={day} setDay={setDay} />
+      //... more components
+    </>
+  )
+}
+```
+
+If you are not accustomed to state management and hooks such as `useState`, we
+recommend looking at the [React docs](https://react.dev/learn). Here, we are
+just initialising the chosen month to June and creating a setter function for
+changing it. These state objects can then be passed on to e.g. our
+`DateSelector` component (`src/components/DateSelector.tsx`) which handles the
+first dropdown `select` in our extension.
+
+#### Using the Forma API
+
+Let's take a look at the `PreviewButton` component (`src/components/PreviewButton.tsx`), which loops through the
+selected times and shows the user which screenshots would be generated:
+
+```ts
+import { Forma } from "forma-embedded-view-sdk/auto";
+
+// ... excluded for brevity
+
+export default function PreviewButton(props: PreviewButtonProps) {
+  const { month, day, startHour, startMinute, endHour, endMinute, interval } = props;
+
+  const onClickPreview = async () => {
+    try {
+      const currentDate = await Forma.sun.getDate();
+      const year = currentDate.getFullYear();
+      const startDate = new Date(year, month, day, startHour, startMinute, 0, 0);
+      const endDate = new Date(year, month, day, endHour, endMinute, 0, 0);
+
+      while (startDate.getTime() <= endDate.getTime()) {
+        await Forma.sun.setDate({ date: startDate });
+        startDate.setTime(startDate.getTime() + interval * 60 * 1000);
+        await timeout(500);
+      }
+
+      await Forma.sun.setDate({ date: currentDate });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <Row>
+      <SecondaryButton category={"secondary"} onClick={onClickPreview}>
+        Preview
+      </SecondaryButton>
+    </Row>
+  );
+}
+```
+
+The first which happens when the user clicks the _Preview_ button, is that we fetch the currently set date in the Forma scene:
+
+```ts
+const currentDate = await Forma.sun.getDate();
+```
+
+We want this info in order to reset the scene after the illustration is
+complete. It is worth pointing out that most functionality in the SDK is `async`
+and must be awaited or resolved.
+
+We then access the selected start and end times through the `props` which are
+sent into the component. The state of these are handled in the main app as
+described above. We loop from the start time to the end time in `interval` increments, and for each loop cycle:
+
+1. update the sun position in the scene using `Forma.sun.setDate()`
+2. increment the relevant time by `interval` minutes
+3. wait for half a second to let the user have a good look
+
+When all the selected snapshots have been shown, we set the sun position back to what it was originally:
+
+```ts
+await Forma.sun.setDate({ date: currentDate });
+```
+
+The code employed by the `ExportButton` component is very similar, but there we
+also store the snapshots using `Forma.camera.capture()` and download a compressed directory using
+[JSZip](https://stuk.github.io/jszip/). Check it out!
+
+#### TODO: Styling
 
 ### Local testing
 
-In order to work with this extension locally, make sure you have the [local testing extension](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/local-testing-extension/) for Forma installed. Install dependencies using
+In order to work with this extension locally, make sure you have the
+[local testing extension](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/local-testing-extension/)
+for Forma installed. Install dependencies using
 
 ```shell
 yarn install
@@ -30,11 +187,16 @@ and then you just need to run
 yarn start
 ```
 
+Your local version of this extension should now be running on port `8081`, and
+the content should be available by clicking the _**Local testing**_ icon the
+right hand side analysis menu in Forma.
+
 ### Contributing
 
 We welcome pull requests with suggestions for improvements from all contributors!
 
-## TODO
+#### Suggestions for improvements
 
-- [ ] extension ID
-- [ ] proper explanation (not referring to slim)
+- Loop over several dates at once
+- Set the terrain texture to a background color of the user's choice
+- Adjustable contrast of the shadow against the backdrop
