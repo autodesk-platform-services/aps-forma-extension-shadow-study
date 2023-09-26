@@ -15,6 +15,6 @@ export const MONTHS = [
 ];
 
 export const getTimezoneOffset = (date: Date, timeZone: string) => {
-  const timezoneDate = new Date(date.toLocaleString("en-GB", { timeZone }));
+  const timezoneDate = new Date(date.toLocaleString("en", { timeZone }));
   return date.getTime() - timezoneDate.getTime();
 };
