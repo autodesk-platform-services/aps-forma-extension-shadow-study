@@ -1,12 +1,8 @@
 import { Forma } from "forma-embedded-view-sdk/auto";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
-import { MONTHS } from "../utils";
+import { MONTHS, getTimezoneOffset } from "../utils";
 import { PrimaryButton, Row } from "../styles";
-
-const getFileName = (date: Date) => {
-  return "Shadow study - " + date.getDate() + " " + MONTHS[date.getMonth()] + ".zip";
-};
 
 type ExportButtonProps = {
   month: number;
@@ -24,10 +20,15 @@ export default function ExportButton(props: ExportButtonProps) {
 
   const onClickExport = async () => {
     try {
+      const projectTimezone = await Forma.project.getTimezone();
+      if (!projectTimezone) {
+        throw new Error("Unable to access project timezone");
+      }
       const currentDate = await Forma.sun.getDate();
+      const offsetMs = getTimezoneOffset(currentDate, projectTimezone);
       const year = currentDate.getFullYear();
-      const startDate = new Date(year, month, day, startHour, startMinute, 0, 0);
-      const endDate = new Date(year, month, day, endHour, endMinute, 0, 0);
+      const startDate = new Date(year, month, day, startHour, startMinute, 0, offsetMs);
+      const endDate = new Date(year, month, day, endHour, endMinute, 0, offsetMs);
       const width = parseInt(resolution.split("x")[0], 10);
       const height = parseInt(resolution.split("x")[1], 10);
 
@@ -37,7 +38,8 @@ export default function ExportButton(props: ExportButtonProps) {
       while (startDate.getTime() <= endDate.getTime()) {
         await Forma.sun.setDate({ date: startDate });
 
-        const filename = startDate.toString().split("2023")[1] + ".png";
+        const filename =
+          startDate.toLocaleString("en-GB", { timeZone: projectTimezone }).split(", ")[1] + ".png";
         const canvas = await Forma.camera.capture({ width, height });
         const data = canvas.toDataURL().split("base64,")[1];
         zipFolder.file(filename, data, { base64: true });
@@ -45,9 +47,8 @@ export default function ExportButton(props: ExportButtonProps) {
         startDate.setTime(startDate.getTime() + interval * 60 * 1000);
       }
 
-      zipFolder
-        .generateAsync({ type: "blob" })
-        .then((content) => saveAs(content, getFileName(startDate)));
+      const folderName = "Shadow study - " + day + " " + MONTHS[month] + ".zip";
+      zipFolder.generateAsync({ type: "blob" }).then((content) => saveAs(content, folderName));
 
       await Forma.sun.setDate({ date: currentDate });
     } catch (e) {
