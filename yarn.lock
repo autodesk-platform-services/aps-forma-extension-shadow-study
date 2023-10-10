@@ -544,10 +544,10 @@ file-saver@^2.0.5:
   resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
   integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
-forma-embedded-view-sdk@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/forma-embedded-view-sdk/-/forma-embedded-view-sdk-0.10.2.tgz#e1029f3cdeb8acf8b643165e33bd375873f4c71f"
-  integrity sha512-B96BfJZRp9tkWa8L1ga4RScMyclgsHoAUQGDTLGNxTXJ+b6b+mSlR892cqBxd2R4m+KrTZadbTvNxacbwmpPFw==
+forma-embedded-view-sdk@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/forma-embedded-view-sdk/-/forma-embedded-view-sdk-0.12.0.tgz#7e3bd89793ce5acba87fa9465be92246212cae7b"
+  integrity sha512-UGGVRlGWv7mQO01BRhRdS1M3fpJCSgIqxWVvkrVYrMNaJNDiGIcQ74rqyQbcq/aWQN3zTPDMSR9mGTIbZefhuQ==
   dependencies:
     uuid "^9.0.0"
 

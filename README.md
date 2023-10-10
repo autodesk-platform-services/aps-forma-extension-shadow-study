@@ -126,9 +126,11 @@ export default function PreviewButton(props: PreviewButtonProps) {
   const onClickPreview = async () => {
     try {
       const currentDate = await Forma.sun.getDate();
+      const projectTimezone = await Forma.project.getTimezone();
+      const offsetMs = getTimezoneOffset(currentDate, projectTimezone);
       const year = currentDate.getFullYear();
-      const startDate = new Date(year, month, day, startHour, startMinute, 0, 0);
-      const endDate = new Date(year, month, day, endHour, endMinute, 0, 0);
+      const startDate = new Date(year, month, day, startHour, startMinute, 0, offsetMs);
+      const endDate = new Date(year, month, day, endHour, endMinute, 0, offsetMs);
 
       while (startDate.getTime() <= endDate.getTime()) {
         await Forma.sun.setDate({ date: startDate });
@@ -152,15 +154,22 @@ export default function PreviewButton(props: PreviewButtonProps) {
 }
 ```
 
-The first which happens when the user clicks the _Preview_ button, is that we fetch the currently set date in the Forma scene:
+The first which happens when the user clicks the _Preview_ button, is that we fetch the currently set date in the Forma scene, along with the timezone which the project is located in:
 
 ```ts
 const currentDate = await Forma.sun.getDate();
+const projectTimezone = await Forma.project.getTimezone();
 ```
 
 We want this info in order to reset the scene after the illustration is
-complete. It is worth pointing out that most functionality in the SDK is `async`
-and must be awaited or resolved.
+complete, and to make sure that we offset dates and times correctly.
+It is worth pointing out that most functionality in the SDK is `async` and must
+be awaited or resolved.
+
+You can check out `getTimeZoneOffset()` under `src/utils.ts` if you are curious
+about the offset. Since `Date` objects in JavaScript are based on the instance
+where the script is run, it is important to capture the discrepancy between the
+machine local time and the time at the project location.
 
 We then access the selected start and end times through the `props` which are
 sent into the component. The state of these are handled in the main app as

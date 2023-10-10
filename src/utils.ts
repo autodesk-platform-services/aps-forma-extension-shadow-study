@@ -13,3 +13,8 @@ export const MONTHS = [
   "November",
   "December",
 ];
+
+export const getTimezoneOffset = (date: Date, timeZone: string) => {
+  const timezoneDate = new Date(date.toLocaleString("en", { timeZone }));
+  return date.getTime() - timezoneDate.getTime();
+};
