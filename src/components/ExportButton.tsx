@@ -58,9 +58,7 @@ export default function ExportButton(props: ExportButtonProps) {
 
   return (
     <Row>
-      <PrimaryButton category={"primary"} onClick={onClickExport}>
-        Export images
-      </PrimaryButton>
+      <PrimaryButton onClick={onClickExport}>Export images</PrimaryButton>
     </Row>
   );
 }

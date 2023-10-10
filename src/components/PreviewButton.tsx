@@ -45,9 +45,7 @@ export default function PreviewButton(props: PreviewButtonProps) {
 
   return (
     <Row>
-      <SecondaryButton category={"secondary"} onClick={onClickPreview}>
-        Preview
-      </SecondaryButton>
+      <SecondaryButton onClick={onClickPreview}>Preview</SecondaryButton>
     </Row>
   );
 }
