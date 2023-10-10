@@ -1,6 +1,6 @@
 import { Forma } from "forma-embedded-view-sdk/auto";
 import { SecondaryButton, Row } from "../styles";
-import { getTimezoneOffset } from "../utils";
+import { DateTime } from "luxon";
 
 function timeout(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -25,19 +25,36 @@ export default function PreviewButton(props: PreviewButtonProps) {
       if (!projectTimezone) {
         throw new Error("Unable to access project timezone");
       }
-      const currentDate = await Forma.sun.getDate();
-      const offsetMs = getTimezoneOffset(currentDate, projectTimezone);
-      const year = currentDate.getFullYear();
-      const startDate = new Date(year, month, day, startHour, startMinute, 0, offsetMs);
-      const endDate = new Date(year, month, day, endHour, endMinute, 0, offsetMs);
+      const originalDate = await Forma.sun.getDate();
+      const year = originalDate.getFullYear();
 
-      while (startDate.getTime() <= endDate.getTime()) {
-        await Forma.sun.setDate({ date: startDate });
-        startDate.setTime(startDate.getTime() + interval * 60 * 1000);
+      let current = DateTime.fromObject(
+        {
+          year,
+          month,
+          day,
+          hour: startHour,
+          minute: startMinute,
+        },
+        { zone: projectTimezone },
+      );
+      const end = DateTime.fromObject(
+        {
+          year,
+          month,
+          day,
+          hour: endHour,
+          minute: endMinute,
+        },
+        { zone: projectTimezone },
+      );
+
+      while (current.toMillis() <= end.toMillis()) {
+        await Forma.sun.setDate({ date: current.toJSDate() });
+        current = current.plus({ minutes: interval });
         await timeout(500);
       }
-
-      await Forma.sun.setDate({ date: currentDate });
+      await Forma.sun.setDate({ date: originalDate });
     } catch (e) {
       console.log(e);
     }
