@@ -125,20 +125,40 @@ export default function PreviewButton(props: PreviewButtonProps) {
 
   const onClickPreview = async () => {
     try {
-      const currentDate = await Forma.sun.getDate();
       const projectTimezone = await Forma.project.getTimezone();
-      const offsetMs = getTimezoneOffset(currentDate, projectTimezone);
-      const year = currentDate.getFullYear();
-      const startDate = new Date(year, month, day, startHour, startMinute, 0, offsetMs);
-      const endDate = new Date(year, month, day, endHour, endMinute, 0, offsetMs);
+      if (!projectTimezone) {
+        throw new Error("Unable to access project timezone");
+      }
+      const originalDate = await Forma.sun.getDate();
+      const year = originalDate.getFullYear();
 
-      while (startDate.getTime() <= endDate.getTime()) {
-        await Forma.sun.setDate({ date: startDate });
-        startDate.setTime(startDate.getTime() + interval * 60 * 1000);
+      let current = DateTime.fromObject(
+        {
+          year,
+          month,
+          day,
+          hour: startHour,
+          minute: startMinute,
+        },
+        { zone: projectTimezone },
+      );
+      const end = DateTime.fromObject(
+        {
+          year,
+          month,
+          day,
+          hour: endHour,
+          minute: endMinute,
+        },
+        { zone: projectTimezone },
+      );
+
+      while (current.toMillis() <= end.toMillis()) {
+        await Forma.sun.setDate({ date: current.toJSDate() });
+        current = current.plus({ minutes: interval });
         await timeout(500);
       }
-
-      await Forma.sun.setDate({ date: currentDate });
+      await Forma.sun.setDate({ date: originalDate });
     } catch (e) {
       console.log(e);
     }
@@ -152,6 +172,7 @@ export default function PreviewButton(props: PreviewButtonProps) {
     </Row>
   );
 }
+
 ```
 
 The first which happens when the user clicks the _Preview_ button, is that we fetch the currently set date in the Forma scene, along with the timezone which the project is located in:
