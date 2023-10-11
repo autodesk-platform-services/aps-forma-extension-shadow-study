@@ -10,16 +10,18 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
-    "forma-embedded-view-sdk": "^0.12.0",
+    "forma-embedded-view-sdk": "^0.14.0",
     "jszip": "3.10.1",
     "lodash": "^4.17.21",
     "preact": "^10.17.1",
-    "goober": "^2.1.0"
+    "goober": "^2.1.0",
+    "luxon": "^3.4.3"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
     "@types/file-saver": "^2.0.2",
     "@types/lodash": "4.14.198",
+    "@types/luxon": "^3.3.2",
     "prettier": "3.0.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
