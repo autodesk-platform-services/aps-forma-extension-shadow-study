@@ -1,6 +1,3 @@
-import { Item, Select, Row, Title } from "../styles";
-import { Event } from "../utils";
-
 type ResolutionSelectorProps = {
   resolution: string;
   setResolution: (resolution: string) => void;
@@ -9,19 +6,19 @@ type ResolutionSelectorProps = {
 export default function ResolutionSelector(props: ResolutionSelectorProps) {
   const { resolution, setResolution } = props;
   return (
-    <Row>
-      <Title>Size</Title>
-      <Item>
-        <Select
+    <div class="row">
+      <div class="row-title">Size</div>
+      <div class="row-item">
+        <weave-select
           value={resolution}
-          onChange={(event: Event) => setResolution(event.currentTarget.value)}
+          onChange={event => setResolution((event as CustomEvent).detail.value)}
         >
-          <option value="512x384">Small (512x384)</option>
-          <option value="1024x768">Medium (1024x768)</option>
-          <option value="2048x1536">Large (2048x1536)</option>
-          <option value="3840x2160">4K (3840x2160)</option>
-        </Select>
-      </Item>
-    </Row>
+          <weave-select-option value="512x384">Small (512x384)</weave-select-option>
+          <weave-select-option value="1024x768">Medium (1024x768)</weave-select-option>
+          <weave-select-option value="2048x1536">Large (2048x1536)</weave-select-option>
+          <weave-select-option value="3840x2160">4K (3840x2160)</weave-select-option>
+        </weave-select>
+      </div>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 import { Forma } from "forma-embedded-view-sdk/auto";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
-import { PrimaryButton, Row } from "../styles";
 import { DateTime } from "luxon";
 
 type ExportButtonProps = {
@@ -85,8 +84,10 @@ export default function ExportButton(props: ExportButtonProps) {
   };
 
   return (
-    <Row>
-      <PrimaryButton onClick={onClickExport}>Export images</PrimaryButton>
-    </Row>
+    <div class="row">
+      <weave-button variant={"solid"} onClick={onClickExport}>
+        Export images
+      </weave-button>
+    </div>
   );
 }

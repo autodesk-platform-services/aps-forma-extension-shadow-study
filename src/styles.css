@@ -1,0 +1,55 @@
+h1 { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 48px;
+  font-size: 12px;
+}
+
+weave-button {
+  width: 100%;
+}
+
+weave-select {
+  height: 24px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+
+  height: 36px;
+}
+
+.row-title {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.row-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+
+  width: 70%;
+  max-width: 70%;
+}
+
+.helpText {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 20px;
+
+  font-weight: 600;
+  font-size: 11px;
+
+  color: #3c3c3cb2;
+}

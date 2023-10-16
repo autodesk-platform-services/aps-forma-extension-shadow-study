@@ -1,6 +1,4 @@
 import _ from "lodash";
-import { Item, Row, Select, Title } from "../styles";
-import { Event } from "../utils";
 
 type DateSelectorProps = {
   month: number;
@@ -27,30 +25,28 @@ export default function DateSelector(props: DateSelectorProps) {
   const { month, setMonth, day, setDay } = props;
 
   return (
-    <Row>
-      <Title>Date</Title>
-      <Item>
-        <Select
-          width={"80px"}
+    <div class="row">
+      <div class="row-title">Date</div>
+      <div class="row-item">
+        <weave-select
           value={month}
-          onChange={(event: Event) => setMonth(parseInt(event.currentTarget.value, 10))}
+          onChange={event => setMonth(parseInt((event as CustomEvent).detail.value, 10))}
         >
           {/* // Luxon uses 1-indexed months, so we need to add 1 to the value */}
           {MONTHS.map((name, value) => (
-            <option value={value + 1}>{name}</option>
+            <weave-select-option value={value + 1}>{name}</weave-select-option>
           ))}
-        </Select>
-        <Select
-          width={"40px"}
-          marginLeft={"10px"}
+        </weave-select>
+        <weave-select
           value={day}
-          onChange={(event: Event) => setDay(parseInt(event.currentTarget.value, 10))}
+          onChange={event => setDay(parseInt((event as CustomEvent).detail.value, 10))}
+          style={{width: "50px", marginLeft: "5px"}}
         >
           {_.range(1, 31).map((value) => (
-            <option value={value}>{value}</option>
+            <weave-select-option value={value}>{value.toString()}</weave-select-option>
           ))}
-        </Select>
-      </Item>
-    </Row>
+        </weave-select>
+      </div>
+    </div>
   );
 }

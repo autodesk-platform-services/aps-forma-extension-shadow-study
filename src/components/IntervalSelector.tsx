@@ -1,6 +1,3 @@
-import { Select, Item, Row, Title } from "../styles";
-import { Event } from "../utils";
-
 type IntervalSelectorProps = {
   interval: number;
   setInterval: (interval: number) => void;
@@ -9,20 +6,20 @@ type IntervalSelectorProps = {
 export default function IntervalSelector(props: IntervalSelectorProps) {
   const { interval, setInterval } = props;
   return (
-    <Row>
-      <Title>Frequency</Title>
-      <Item>
-        <Select
+    <div class="row">
+      <div class="row-title">Frequency</div>
+      <div class="row-item">
+        <weave-select
           value={interval}
-          onChange={(event: Event) => setInterval(parseInt(event.currentTarget.value, 10))}
+          onChange={event => setInterval(parseInt((event as CustomEvent).detail.value, 10))}
         >
-          <option value="5">Every 5th minute</option>
-          <option value="15">Every 15th minute</option>
-          <option value="30">Every 30th minute</option>
-          <option value="60">Every hour</option>
-          <option value="120">Every 2nd hour</option>
-        </Select>
-      </Item>
-    </Row>
+          <weave-select-option value="5">Every 5th minute</weave-select-option>
+          <weave-select-option value="15">Every 15th minute</weave-select-option>
+          <weave-select-option value="30">Every 30th minute</weave-select-option>
+          <weave-select-option value="60">Every hour</weave-select-option>
+          <weave-select-option value="120">Every 2nd hour</weave-select-option>
+        </weave-select>
+      </div>
+    </div>
   );
 }
