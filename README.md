@@ -1,7 +1,7 @@
 # Shadow study: example extension for Autodesk Forma
 
 This extension is built using the
-**[Forma SDK for Javascript](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/intro/h)**
+**[Forma SDK for Javascript](https://aps.autodesk.com/en/docs/forma/v1/embedded-views/introduction/)**
 using an _**Embedded View**_ in the _**Right hand side analysis panel**_.
 We recommend checking out the link to learn more about creating extensions and
 to access the full API reference of the SDK.
@@ -215,7 +215,7 @@ also store the snapshots using `Forma.camera.capture()` and download a compresse
 ## Local testing
 
 In order to work with this extension locally, make sure you have the
-[local testing extension](https://aps.autodesk.com/en/docs/forma/v1/developers_guide/local-testing-extension/)
+[local testing extension](https://aps.autodesk.com/en/docs/forma/v1/embedded-views/getting-started/#local-testing-extension)
 for Forma installed. Install dependencies using
 
 ```shell
