@@ -1,5 +1,4 @@
 import { Forma } from "forma-embedded-view-sdk/auto";
-import { SecondaryButton, Row } from "../styles";
 import { DateTime } from "luxon";
 
 function timeout(ms: number) {
@@ -61,8 +60,10 @@ export default function PreviewButton(props: PreviewButtonProps) {
   };
 
   return (
-    <Row>
-      <SecondaryButton onClick={onClickPreview}>Preview</SecondaryButton>
-    </Row>
+    <div class="row">
+      <weave-button variant="outlined" onClick={onClickPreview}>
+        Preview
+      </weave-button>
+    </div>
   );
 }

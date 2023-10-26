@@ -1,8 +1,6 @@
 import _ from "lodash";
-import { HelpText, Item, Row, Select, Title } from "../styles";
-import { Event } from "../utils";
 
-const formatTime = (x: number) => (x < 10 ? "0" + x : x);
+const formatTime = (x: number) => (x < 10 ? "0" + x : x).toString();
 
 type TimeSelectorProps = {
   startHour: number;
@@ -29,58 +27,54 @@ export default function TimeSelector(props: TimeSelectorProps) {
 
   return (
     <>
-      <Row>
-        <Title>Time</Title>
-        <Item>
-          <HelpText>From</HelpText>
-          <Select
-            width={"40px"}
-            marginLeft={"10px"}
+      <div class="row">
+        <div class="row-title">Time</div>
+        <div class="row-item">
+          <div class="helpText">From</div>
+          <weave-select
             value={startHour}
-            onChange={(event: Event) => setStartHour(parseInt(event.currentTarget.value, 10))}
+            onChange={(event) => setStartHour(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "10px" }}
           >
             {_.range(25).map((value) => (
-              <option value={value}>{formatTime(value)}</option>
+              <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
             ))}
-          </Select>
-          <Select
-            width={"40px"}
-            marginLeft={"10px"}
+          </weave-select>
+          <weave-select
             value={startMinute}
-            onChange={(event: Event) => setStartMinute(parseInt(event.currentTarget.value, 10))}
+            onChange={(event) => setStartMinute(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "5px" }}
           >
             {_.range(60).map((value) => (
-              <option value={value}>{formatTime(value)}</option>
+              <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
             ))}
-          </Select>
-        </Item>
-      </Row>
-      <Row>
-        <Title></Title>
-        <Item>
-          <HelpText>To</HelpText>
-          <Select
-            width={"40px"}
-            marginLeft={"10px"}
+          </weave-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-title"></div>
+        <div class="row-item">
+          <div class="helpText">To</div>
+          <weave-select
             value={endHour}
-            onChange={(event: Event) => setEndHour(parseInt(event.currentTarget.value, 10))}
+            onChange={(event) => setEndHour(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "10px" }}
           >
             {_.range(25).map((value) => (
-              <option value={value}>{formatTime(value)}</option>
+              <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
             ))}
-          </Select>
-          <Select
-            width={"40px"}
-            marginLeft={"10px"}
+          </weave-select>
+          <weave-select
             value={endMinute}
-            onChange={(event: Event) => setEndMinute(parseInt(event.currentTarget.value))}
+            onChange={(event) => setEndMinute(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "5px" }}
           >
             {_.range(60).map((value) => (
-              <option value={value}>{formatTime(value)}</option>
+              <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
             ))}
-          </Select>
-        </Item>
-      </Row>
+          </weave-select>
+        </div>
+      </div>
     </>
   );
 }

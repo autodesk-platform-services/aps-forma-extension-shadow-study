@@ -4,7 +4,6 @@ import ExportButton from "./components/ExportButton";
 import IntervalSelector from "./components/IntervalSelector";
 import ResolutionSelector from "./components/ResolutionSelector";
 import TimeSelector from "./components/TimeSelector";
-import { Header } from "./styles";
 import PreviewButton from "./components/PreviewButton";
 
 export default function App() {
@@ -19,7 +18,7 @@ export default function App() {
 
   return (
     <>
-      <Header>Shadow study</Header>
+      <h1>Shadow study</h1>
       <DateSelector month={month} setMonth={setMonth} day={day} setDay={setDay} />
       <TimeSelector
         startHour={startHour}
