@@ -33,8 +33,8 @@ export default function TimeSelector(props: TimeSelectorProps) {
           <div class="helpText">From</div>
           <weave-select
             value={startHour}
-            onChange={event => setStartHour(parseInt((event as CustomEvent).detail.value, 10))}
-            style={{width: "50px", marginLeft: "10px"}}
+            onChange={(event) => setStartHour(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "10px" }}
           >
             {_.range(25).map((value) => (
               <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
@@ -42,8 +42,8 @@ export default function TimeSelector(props: TimeSelectorProps) {
           </weave-select>
           <weave-select
             value={startMinute}
-            onChange={event => setStartMinute(parseInt((event as CustomEvent).detail.value, 10))}
-            style={{width: "50px", marginLeft: "5px"}}
+            onChange={(event) => setStartMinute(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "5px" }}
           >
             {_.range(60).map((value) => (
               <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
@@ -57,8 +57,8 @@ export default function TimeSelector(props: TimeSelectorProps) {
           <div class="helpText">To</div>
           <weave-select
             value={endHour}
-            onChange={event => setEndHour(parseInt((event as CustomEvent).detail.value, 10))}
-            style={{width: "50px", marginLeft: "10px"}}
+            onChange={(event) => setEndHour(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "10px" }}
           >
             {_.range(25).map((value) => (
               <weave-select-option value={value}>{formatTime(value)}</weave-select-option>
@@ -66,8 +66,8 @@ export default function TimeSelector(props: TimeSelectorProps) {
           </weave-select>
           <weave-select
             value={endMinute}
-            onChange={event => setEndMinute(parseInt((event as CustomEvent).detail.value, 10))}
-            style={{width: "50px", marginLeft: "5px"}}
+            onChange={(event) => setEndMinute(parseInt((event as CustomEvent).detail.value, 10))}
+            style={{ width: "50px", marginLeft: "5px" }}
           >
             {_.range(60).map((value) => (
               <weave-select-option value={value}>{formatTime(value)}</weave-select-option>

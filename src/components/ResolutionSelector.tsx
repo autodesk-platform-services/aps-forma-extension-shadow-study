@@ -11,7 +11,7 @@ export default function ResolutionSelector(props: ResolutionSelectorProps) {
       <div class="row-item">
         <weave-select
           value={resolution}
-          onChange={event => setResolution((event as CustomEvent).detail.value)}
+          onChange={(event) => setResolution((event as CustomEvent).detail.value)}
         >
           <weave-select-option value="512x384">Small (512x384)</weave-select-option>
           <weave-select-option value="1024x768">Medium (1024x768)</weave-select-option>

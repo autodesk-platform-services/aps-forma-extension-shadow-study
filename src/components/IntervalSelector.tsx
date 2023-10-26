@@ -11,7 +11,7 @@ export default function IntervalSelector(props: IntervalSelectorProps) {
       <div class="row-item">
         <weave-select
           value={interval}
-          onChange={event => setInterval(parseInt((event as CustomEvent).detail.value, 10))}
+          onChange={(event) => setInterval(parseInt((event as CustomEvent).detail.value, 10))}
         >
           <weave-select-option value="5">Every 5th minute</weave-select-option>
           <weave-select-option value="15">Every 15th minute</weave-select-option>
