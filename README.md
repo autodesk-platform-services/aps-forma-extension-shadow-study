@@ -211,7 +211,7 @@ also store the snapshots using `Forma.camera.capture()` and download a compresse
 
 ### Styling
 
-In order to achieve consistent styling with the rest of the Forma app, we utilise web components form the [Autodesk Forma Design System](https://app.autodeskforma.eu/design-system/v2/docs/). Follow the link to access a Storybook with extensive overview of available components and examples of usage. 
+In order to achieve consistent styling with the rest of the Forma app, we utilise web components from the [Autodesk Forma Design System](https://app.autodeskforma.eu/design-system/v2/docs/). Follow the link to access a Storybook with extensive overview of available components and examples of usage. 
 
 Relevant resources are included in `index.html`:
 
