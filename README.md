@@ -6,9 +6,8 @@ using an _**Embedded View**_ in the _**Right hand side analysis panel**_.
 We recommend checking out the link to learn more about creating extensions and
 to access the full API reference of the SDK.
 
-Until it is published, this extension can be accessed by pasting the extension
-ID `4aff4df1-dcd1-422b-94ca-0d1bb776cf18` under the _**Unpublished**_ tab of the
-Forma extensions menu.
+This extension can be accessed by activating it in the
+Forma extensions menu. It is automatically deployed and hosted from this repo. 
 
 - [Motivation](#motivation)
 - [How was this built](#how-was-this-built)
