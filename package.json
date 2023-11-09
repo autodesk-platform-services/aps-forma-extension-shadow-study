@@ -6,7 +6,9 @@
   "scripts": {
     "start": "DEV_SERVER=1 vite",
     "build": "vite build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prettier:check": "yarn prettier --check src",
+    "prettier:write": "yarn prettier --write src"
   },
   "dependencies": {
     "file-saver": "^2.0.5",
