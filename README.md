@@ -6,7 +6,7 @@ using an _**Embedded View**_ in the _**Right hand side analysis panel**_.
 We recommend checking out the link to learn more about creating extensions and
 to access the full API reference of the SDK.
 
-This extension can be accessed by activating it in the
+This extension can be accessed by all users of Forma by activating it in the
 Forma extensions menu. It is automatically deployed and hosted from this repo. 
 
 - [Motivation](#motivation)
