@@ -17,6 +17,7 @@ Forma extensions menu. It is automatically deployed and hosted from this repo.
     - [Using the Forma API](#using-the-forma-api)
   - [Styling](#styling)
 - [Local testing](#local-testing)
+- [Deployment and hosting](#deployment-and-hosting)
 - [Contributing](#contributing)
   - [Suggestions for improvements](#suggestions-for-improvements)
 
