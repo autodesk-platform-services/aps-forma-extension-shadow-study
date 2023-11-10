@@ -281,6 +281,12 @@ Your local version of this extension should now be running on port `8081`, and
 the content should be available by clicking the _**Local testing**_ icon the
 right hand side analysis menu in Forma.
 
+## Deployment and hosting 
+
+This extension is updated using continuous integration and deployment. In practice, each commit to the `main` branch of this repo triggers [GitHub Actions](https://docs.github.com/en/actions) to build the static files, upload them to [GitHub pages](https://pages.github.com/) and finally deploy the changes so that the update reaches end users within a minute of the commit. 
+
+Check out the workflows in `.github/workflows/test-build-deploy.yml` to learn more about how this has been configured -- it consitutes a simple example of how to do CI/CD to get you started if you want to do something similar. 
+
 ## Contributing
 
 We welcome pull requests with suggestions for improvements from all contributors!
