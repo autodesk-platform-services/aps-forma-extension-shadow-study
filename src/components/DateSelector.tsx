@@ -40,7 +40,7 @@ export default function DateSelector(props: DateSelectorProps) {
         <weave-select
           value={day}
           onChange={(event) => setDay(parseInt((event as CustomEvent).detail.value, 10))}
-          style={{ width: "50px", marginLeft: "5px" }}
+          style={{ width: "70px", marginLeft: "5px" }}
         >
           {_.range(1, 31).map((value) => (
             <weave-select-option value={value}>{value.toString()}</weave-select-option>
