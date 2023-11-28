@@ -31,6 +31,7 @@ export default function DateSelector(props: DateSelectorProps) {
         <weave-select
           value={month}
           onChange={(event) => setMonth(parseInt((event as CustomEvent).detail.value, 10))}
+          style={{ width: "100px" }}
         >
           {/* // Luxon uses 1-indexed months, so we need to add 1 to the value */}
           {MONTHS.map((name, value) => (
