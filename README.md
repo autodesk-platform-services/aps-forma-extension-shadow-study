@@ -286,7 +286,7 @@ right hand side analysis menu in Forma.
 
 This extension is updated using continuous integration and deployment. In practice, each commit to the `main` branch of this repo triggers [GitHub Actions](https://docs.github.com/en/actions) to build the static files, upload them to [GitHub pages](https://pages.github.com/) and finally deploy the changes so that the update reaches end users within a minute of the commit. 
 
-Check out the workflows in `.github/workflows/test-build-deploy.yml` to learn more about how this has been configured -- it consitutes a simple example of how to do CI/CD to get you started if you want to do something similar. 
+Check out the workflows in `.github/workflows/test-build-deploy.yml` to learn more about how this has been configured -- it constitutes a simple example of how to do CI/CD to get you started if you want to do something similar. 
 
 ## Contributing
 
