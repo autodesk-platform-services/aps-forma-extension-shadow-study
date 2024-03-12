@@ -54,14 +54,7 @@ export default function ExportButton(props: ExportButtonProps) {
       );
       while (current.toMillis() <= endDate.toMillis()) {
         await Forma.sun.setDate({ date: current.toJSDate() });
-
-        const filename =
-          current.toLocaleString({
-            timeZone: projectTimezone,
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-          }) + ".png";
+        const filename = `${current.toFormat("HH-mm")}.png`;
         const canvas = await Forma.camera.capture({ width, height });
         const data = canvas.toDataURL().split("base64,")[1];
         zipFolder.file(filename, data, { base64: true });
