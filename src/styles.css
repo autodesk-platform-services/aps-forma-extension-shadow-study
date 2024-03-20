@@ -58,3 +58,13 @@ weave-select {
 
   color: #3c3c3cb2;
 }
+
+.color-picker {
+  margin-left: 10px;
+  width: 40%;
+  cursor: pointer;
+  border: none;
+  block-size: 20px;
+  padding: 0;
+  background-color: transparent;
+}

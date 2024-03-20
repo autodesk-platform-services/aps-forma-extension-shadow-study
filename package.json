@@ -12,19 +12,19 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
-    "forma-embedded-view-sdk": "0.44.0",
+    "forma-embedded-view-sdk": "0.58.0",
     "jszip": "3.10.1",
     "lodash": "^4.17.21",
     "luxon": "^3.4.3",
-    "preact": "^10.17.1"
+    "preact": "^10.19.6"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.5.0",
+    "@preact/preset-vite": "^2.8.2",
     "@types/file-saver": "^2.0.2",
     "@types/lodash": "4.14.198",
     "@types/luxon": "^3.3.2",
     "prettier": "3.0.3",
-    "typescript": "^5.0.2",
-    "vite": "^4.5.2"
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6"
   }
 }
