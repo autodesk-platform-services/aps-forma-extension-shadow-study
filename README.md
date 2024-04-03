@@ -7,7 +7,7 @@ We recommend checking out the link to learn more about creating extensions and
 to access the full API reference of the SDK.
 
 This extension can be accessed by all users of Forma by activating it in the
-Forma extensions menu. It is automatically deployed and hosted from this repo. 
+Forma extensions menu. It is automatically deployed and hosted from this repo.
 
 - [Motivation](#motivation)
 - [How was this built](#how-was-this-built)
@@ -16,7 +16,7 @@ Forma extensions menu. It is automatically deployed and hosted from this repo.
     - [State management and main components](#state-management-and-main-components)
     - [Using the Forma API](#using-the-forma-api)
   - [Styling](#styling)
-- [Local testing](#local-testing)
+- [Local Development](#local-development)
 - [Deployment and hosting](#deployment-and-hosting)
 - [Contributing](#contributing)
   - [Suggestions for improvements](#suggestions-for-improvements)
@@ -189,7 +189,7 @@ Since `Date` objects in JavaScript are based on the instance where the script is
 run, it is important to capture the discrepancy between the machine local time
 and the time at the project location. We use
 [Luxon](https://moment.github.io/luxon/#/) to handle this -- their website has a
-lot of good documentation on the intricacies of time zones. 
+lot of good documentation on the intricacies of time zones.
 
 We then access the selected start and end times through the `props` which are
 sent into the component. The state of these are handled in the main app as
@@ -211,7 +211,7 @@ also store the snapshots using `Forma.camera.capture()` and download a compresse
 
 ### Styling
 
-In order to achieve consistent styling with the rest of the Forma app, we utilise web components from the [Autodesk Forma Design System](https://app.autodeskforma.eu/design-system/v2/docs/). Follow the link to access a Storybook with extensive overview of available components and examples of usage. 
+In order to achieve consistent styling with the rest of the Forma app, we utilise web components from the [Autodesk Forma Design System](https://app.autodeskforma.eu/design-system/v2/docs/). Follow the link to access a Storybook with extensive overview of available components and examples of usage.
 
 Relevant resources are included in `index.html`:
 
@@ -221,7 +221,7 @@ Relevant resources are included in `index.html`:
     rel="stylesheet"
     href="https://app.autodeskforma.eu/design-system/v2/forma/styles/base.css"
   />
-  <link rel="stylesheet" href="./src/styles.css"/>
+  <link rel="stylesheet" href="./src/styles.css" />
   <script
     type="module"
     src="https://app.autodeskforma.eu/design-system/v2/weave/components/button/weave-button.js"
@@ -234,39 +234,39 @@ Relevant resources are included in `index.html`:
 </head>
 ```
 
-Extension-specific styling is found in `src/styles.css`, while `src/lib/weave.d.ts` hold type declarations to enable working with the relevant web components in typescript: 
+Extension-specific styling is found in `src/styles.css`, while `src/lib/weave.d.ts` hold type declarations to enable working with the relevant web components in typescript:
 
 ```ts
 export declare module "preact/src/jsx" {
   namespace JSXInternal {
     interface IntrinsicElements {
       "weave-button": JSX.HTMLAttributes<HTMLElement> & {
-        type?: "button" | "submit" | "reset"
-        variant?: "outlined" | "flat" | "solid"
-        density?: "high" | "medium"
-        iconposition?: "left" | "right"
-      },
+        type?: "button" | "submit" | "reset";
+        variant?: "outlined" | "flat" | "solid";
+        density?: "high" | "medium";
+        iconposition?: "left" | "right";
+      };
       "weave-select": JSX.HTMLAttributes<HTMLElement> & {
-        placeholder?: any
-        value: any
-        children: JSX.Element[]
-        onChange: (e: CustomEvent<{ value: string; text: string }>) => void
-      }
+        placeholder?: any;
+        value: any;
+        children: JSX.Element[];
+        onChange: (e: CustomEvent<{ value: string; text: string }>) => void;
+      };
       "weave-select-option": JSX.HTMLAttributes<HTMLElement> & {
-        disabled?: true
-        value: any
-        children?: JSX.Element | string
-      }
+        disabled?: true;
+        value: any;
+        children?: JSX.Element | string;
+      };
     }
   }
 }
 ```
 
-## Local testing
+## Local Development
 
-In order to work with this extension locally, make sure you have the
-[local testing extension](https://aps.autodesk.com/en/docs/forma/v1/embedded-views/getting-started/#local-testing-extension)
-for Forma installed. Install dependencies using
+In order to work with this extension locally, you need to [create your own extension](https://aps.autodesk.com/en/docs/forma/v1/overview/getting-started/), and configure the it to point to `http://localhost:8181`. We also recommend using the **RIGHT_MENU_ANALYSIS_PANEL** placement for this example.
+
+You can now install dependencies by running
 
 ```shell
 yarn install
@@ -278,15 +278,14 @@ and then you just need to run
 yarn start
 ```
 
-Your local version of this extension should now be running on port `8081`, and
-the content should be available by clicking the _**Local testing**_ icon the
-right hand side analysis menu in Forma.
+Your local version of this extension should now be running on port `8081`, and it should be visible in the analysis panel on
+the right hand side of the Forma design UI.
 
-## Deployment and hosting 
+## Deployment and hosting
 
-This extension is updated using continuous integration and deployment. In practice, each commit to the `main` branch of this repo triggers [GitHub Actions](https://docs.github.com/en/actions) to build the static files, upload them to [GitHub pages](https://pages.github.com/) and finally deploy the changes so that the update reaches end users within a minute of the commit. 
+This extension is updated using continuous integration and deployment. In practice, each commit to the `main` branch of this repo triggers [GitHub Actions](https://docs.github.com/en/actions) to build the static files, upload them to [GitHub pages](https://pages.github.com/) and finally deploy the changes so that the update reaches end users within a minute of the commit.
 
-Check out the workflows in `.github/workflows/test-build-deploy.yml` to learn more about how this has been configured -- it constitutes a simple example of how to do CI/CD to get you started if you want to do something similar. 
+Check out the workflows in `.github/workflows/test-build-deploy.yml` to learn more about how this has been configured -- it constitutes a simple example of how to do CI/CD to get you started if you want to do something similar.
 
 ## Contributing
 
