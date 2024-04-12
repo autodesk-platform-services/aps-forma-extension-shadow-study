@@ -99,10 +99,12 @@ export default function GeometryColorSelector() {
     Forma.proposal.getRootUrn().then((rootUrn) => {
       setRootUrn(rootUrn as Urn);
     });
-    Forma.proposal.subscribe(async ({ rootUrn }) => {
-      await Forma.proposal.awaitProposalPersisted();
-      setRootUrn(rootUrn as Urn);
-    });
+    Forma.proposal.subscribe(
+      ({ rootUrn }) => {
+        setRootUrn(rootUrn as Urn);
+      },
+      { debouncedPersistedOnly: true },
+    );
   }, []);
 
   useEffect(() => {
@@ -164,7 +166,7 @@ export default function GeometryColorSelector() {
           <input
             type="color"
             class={"color-picker"}
-            value={geometryColor}
+            value={terrainColor}
             onInput={debounce((e: Event) => {
               if (e.target instanceof HTMLInputElement) setTerrainColor(e.target?.value);
             }, 50)}

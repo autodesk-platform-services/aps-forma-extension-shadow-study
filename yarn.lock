@@ -695,10 +695,10 @@ forma-elements@^1.5.2:
   resolved "https://registry.yarnpkg.com/forma-elements/-/forma-elements-1.5.3.tgz#9413acb1fa0e8b88a5cc6da2cfb42545c9d75895"
   integrity sha512-f5xSHypP5eETa1oFy8GYeRjmVI0/82ARuRtYTe8Smy0cZdGkRaDd5WFwNZT252KqxyOu/phUjDegZxZQxayIfA==
 
-forma-embedded-view-sdk@0.58.0:
-  version "0.58.0"
-  resolved "https://registry.yarnpkg.com/forma-embedded-view-sdk/-/forma-embedded-view-sdk-0.58.0.tgz#94d63fcad10b78ee912836741184522f2cd2cceb"
-  integrity sha512-KR8xwhRZvFJi55BoV9Deg7BfESeEZdxccwgW8BvxkmQUqkEsFaiXeXm3zwVRZJUhipFyDu3h99bAkCNkSrwsIg==
+forma-embedded-view-sdk@0.60.1:
+  version "0.60.1"
+  resolved "https://registry.yarnpkg.com/forma-embedded-view-sdk/-/forma-embedded-view-sdk-0.60.1.tgz#c6619dcc93d7709e920694b15a2e80eb14ecff41"
+  integrity sha512-G8v5PBvi4OFIUhU6+S5U0dPod/hVFAvatJciq2Cw0GPDt28voX0GRpq6JXrSXHIYdfYsnc6zRfwERyIHzZ1Isw==
   dependencies:
     "@types/geojson" "^7946.0.13"
     forma-elements "^1.5.2"
