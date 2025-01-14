@@ -706,20 +706,20 @@ file-saver@^2.0.5:
   resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
   integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
-forma-elements@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/forma-elements/-/forma-elements-2.0.1.tgz#dd2c34be409b7cf823b53642aa1e1a816f0bf440"
-  integrity sha512-N/II/92LZLyCG4T57Gau00wubgmTgDfw7Y0R6SqrlXzcPbMG3VNQJJRzFz1hfx1q0gpujIQUJHIO1pevuNuQiQ==
+forma-elements@^2.1.1:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/forma-elements/-/forma-elements-2.4.0.tgz#f8fe410208a23727cdbe1740638cd62f41d992fe"
+  integrity sha512-XKIKRiWX+Bu7plD7SbLaDWSvZ4B7dy2fzczVAKV+gp30Fwmn8t1dk7wqkgslKf2OK4yv95SUJvTmYJA9mq7X+g==
   dependencies:
     "@types/geojson" "^7946.0.14"
 
-forma-embedded-view-sdk@^0.64.0:
-  version "0.64.0"
-  resolved "https://registry.yarnpkg.com/forma-embedded-view-sdk/-/forma-embedded-view-sdk-0.64.0.tgz#6094f474cccabb0fe98d788cff2c2d6657a5149f"
-  integrity sha512-YLsezffMJaSgGp865p/YOQudAIydzWSjETkfHADKvvFzlLDG6+LnQjA6FIEMyivpiXNVjwsoQtkcwdLE6N3mEQ==
+forma-embedded-view-sdk@^0.87.0:
+  version "0.87.0"
+  resolved "https://registry.yarnpkg.com/forma-embedded-view-sdk/-/forma-embedded-view-sdk-0.87.0.tgz#4185d193cf24cce3312cdca605918f463a22b024"
+  integrity sha512-GWvkRUlnX3z927QiXpZcmvpyDd/oP2FzGJb2nfUfyaGztZaLt+ZK+OQP8LRudtKQgpmNFbPeHR1Rp99MZJA9Lw==
   dependencies:
     "@types/geojson" "^7946.0.13"
-    forma-elements "^2.0.1"
+    forma-elements "^2.1.1"
 
 fsevents@~2.3.2, fsevents@~2.3.3:
   version "2.3.3"
