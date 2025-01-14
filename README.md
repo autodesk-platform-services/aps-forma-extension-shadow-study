@@ -23,7 +23,7 @@ Forma extensions menu. It is automatically deployed and hosted from this repo.
 
 ## Motivation
 
-The shadow study extension lets the user select a time range, date and inverval
+The shadow study extension lets the user select a time range, date and interval
 to generate a shadow study consisting of screenshots of the proposal at
 selected sun positions for the given times. This is a typical workflow for many
 architects which can be time-consuming to do with traditional tools.
@@ -64,11 +64,11 @@ It is also worth noting that the Forma SDK is added as a dependency in `package.
 ```json
   "dependencies": {
     "file-saver": "^2.0.5",
-    "forma-embedded-view-sdk": "^0.15.0",
+    "forma-embedded-view-sdk": "^0.87.0",
     "jszip": "3.10.1",
     "lodash": "^4.17.21",
-    "luxon": "^3.4.3",
-    "preact": "^10.17.1"
+    "luxon": "^3.4.4",
+    "preact": "^10.20.1"
   },
 ```
 
@@ -294,5 +294,4 @@ We welcome pull requests with suggestions for improvements from all contributors
 ### Suggestions for improvements
 
 - Loop over several dates at once
-- Set the terrain texture to a background color of the user's choice
 - Adjustable contrast of the shadow against the backdrop
