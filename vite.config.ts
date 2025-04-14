@@ -6,6 +6,10 @@ export default defineConfig({
   base: "./",
   plugins: [preact()],
   server: {
-    port: 8081,
+    port: 8181,
+    hmr: true
   },
+  build: {
+    copyPublicDir: true
+  }
 });

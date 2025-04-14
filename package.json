@@ -1,18 +1,20 @@
 {
   "name": "shadow-study",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "start": "DEV_SERVER=1 vite",
+    "start": "cross-env DEV_SERVER=1 vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "prettier:check": "yarn prettier --check src",
-    "prettier:write": "yarn prettier --write src"
+    "prettier:write": "yarn prettier --write src",
+    "dev": "vite"
   },
   "dependencies": {
     "file-saver": "^2.0.5",
     "forma-embedded-view-sdk": "^0.87.0",
+    "gif.js": "^0.2.0",
     "jszip": "3.10.1",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
@@ -21,8 +23,10 @@
   "devDependencies": {
     "@preact/preset-vite": "^2.8.2",
     "@types/file-saver": "^2.0.7",
+    "@types/gif.js": "^0.2.5",
     "@types/lodash": "4.17.0",
     "@types/luxon": "^3.4.2",
+    "cross-env": "^7.0.3",
     "prettier": "3.2.5",
     "typescript": "^5.4.3",
     "vite": "^5.2.7"

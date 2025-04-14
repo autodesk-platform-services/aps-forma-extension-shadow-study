@@ -136,9 +136,7 @@ export default function GeometryColorSelector() {
   return (
     <>
       <div class="row">
-        <div class="row-title" style={{ width: "50%" }}>
-          Color geometry:
-        </div>
+        <div class="row-title">Geometry</div>
         <div class="row-item">
           <weave-checkbox
             checked={shouldPaintGeometry}
@@ -146,7 +144,7 @@ export default function GeometryColorSelector() {
           ></weave-checkbox>
           <input
             type="color"
-            class={"color-picker"}
+            class="color-picker"
             value={geometryColor}
             onInput={debounce((e: Event) => {
               if (e.target instanceof HTMLInputElement) setGeometryColor(e.target?.value);
@@ -155,9 +153,7 @@ export default function GeometryColorSelector() {
         </div>
       </div>
       <div class="row">
-        <div class="row-title" style={{ width: "50%" }}>
-          Color terrain:
-        </div>
+        <div class="row-title">Terrain</div>
         <div class="row-item">
           <weave-checkbox
             checked={shouldPaintTerrain}
@@ -165,7 +161,7 @@ export default function GeometryColorSelector() {
           ></weave-checkbox>
           <input
             type="color"
-            class={"color-picker"}
+            class="color-picker"
             value={terrainColor}
             onInput={debounce((e: Event) => {
               if (e.target instanceof HTMLInputElement) setTerrainColor(e.target?.value);
