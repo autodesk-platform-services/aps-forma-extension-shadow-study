@@ -190,7 +190,10 @@ export default function ExportButton({
           onClick={onClickExport} 
           data-disabled={dates.length === 0 ? "" : undefined}
         >
-          Export {isGif ? "animation" : "images"}
+          {isSingleTime 
+            ? "Export image" 
+            : `Export ${isGif ? "animation" : "images"}`
+          }
         </weave-button>
       </div>
     </div>

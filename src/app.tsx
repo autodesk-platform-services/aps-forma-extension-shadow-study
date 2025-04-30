@@ -56,6 +56,13 @@ export default function App() {
     initYear();
   }, []);
 
+  useEffect(() => {
+    // If switching to single time mode, ensure isGif is false
+    if (isSingleTime && isGif) {
+      setIsGif(false);
+    }
+  }, [isSingleTime]);
+
   const handleAddDate = (month: number, day: number) => {
     setDates([...dates, { month, day }]);
   };
