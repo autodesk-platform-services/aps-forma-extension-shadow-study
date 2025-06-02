@@ -21,7 +21,7 @@ jobs:
           remote-repository-name: CLA-Signatures
           remote-organization-name: Autodesk
           path-to-signatures: signatures/Autodesk/Individual/aps-forma-extension-shadow-study.json
-          # This is not used with custom-notsigned-prcomment is provided.
+          # This is not used when custom-notsigned-prcomment is provided.
           path-to-document: unused
           branch: master
           allowlist: 'dependabot[bot]'
