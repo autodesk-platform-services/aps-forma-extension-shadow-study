@@ -10,13 +10,20 @@ jobs:
   CLA-Assistant:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          # https://autodesk.slack.com/archives/C0LAJTSCS/p1748350123555149?thread_ts=1747211675.231509&cid=C0LAJTSCS
+          app-id: ${{ vars.CLA_BOT_APP_ID }}
+          private-key: ${{ secrets.CLA_BOT_PRIVATE_KEY }}
+          owner: Autodesk
+          repositories: CLA-Signatures
       - name: CLA Assistant
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request_target'
         uses: contributor-assistant/github-action@v2.6.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # https://autodesk.slack.com/archives/C0LAJTSCS/p1748350123555149?thread_ts=1747211675.231509&cid=C0LAJTSCS
-          PERSONAL_ACCESS_TOKEN : ${{ secrets.CLA_BOT_SECRET }}
+          PERSONAL_ACCESS_TOKEN : ${{ steps.app-token.outputs.token }}
         with:
           remote-repository-name: CLA-Signatures
           remote-organization-name: Autodesk
