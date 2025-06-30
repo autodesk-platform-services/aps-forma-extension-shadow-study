@@ -29,21 +29,6 @@ export default function App() {
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const [isGif, setIsGif] = useState(false);
 
-  // TODO: Future enhancement - Add quick selection of standard solar analysis dates:
-  // - March 21 (Spring Equinox)
-  // - June 21 (Summer Solstice)
-  // - September 21 (Fall Equinox)
-  // - December 21 (Winter Solstice)
-  // Allow batch export of all selected standard dates
-
-  // TODO: Future enhancement - Add GIF customization options:
-  // - Configurable frame delay
-  // - Quality settings (compression, workers, dithering)
-
-  // TODO: Future enhancement - Improve viewport capture experience:
-  // - Show actual capture bounds
-  // - Account for UI panels in viewport alignment
-
   useEffect(() => {
     const initYear = async () => {
       try {

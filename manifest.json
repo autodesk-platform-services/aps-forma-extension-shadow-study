@@ -1,6 +1,0 @@
-{
-  "name": "Shadow study",
-  "id": "shadow-study",
-  "description": "Extends original Shadow study extension to: preview shadows for specific moment in time; select, preview, export multiple dates; export animated gifs",
-  "version": "1.1.0"
-} 

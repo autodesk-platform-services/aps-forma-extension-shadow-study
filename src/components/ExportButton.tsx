@@ -3,7 +3,8 @@ import { saveAs } from "file-saver";
 import JSZip from "jszip";
 import { DateTime } from "luxon";
 import { MONTHS } from "../constants";
-import GIF from 'gif.js/dist/gif';
+import { encode } from "modern-gif";
+import workerUrl from "modern-gif/worker?url";
 
 interface DateEntry {
   month: number;
@@ -77,54 +78,48 @@ export default function ExportButton({
         if (isGif) {
           // Handle each date separately
           for (const date of dates) {
-            const gif = new GIF({
-              workers: 2,
-              quality: 10,
-              width,
-              height,
-              workerScript: '/gif.worker.js'
-            });
+            const frames: { data: Uint8ClampedArray; delay: number }[] = [];
+            let current = DateTime.fromObject(
+              {
+                year,
+                month: date.month,
+                day: date.day,
+                hour: startHour,
+                minute: startMinute,
+              },
+              { zone: projectTimezone },
+            );
+            const endTime = DateTime.fromObject(
+              {
+                year,
+                month: date.month,
+                day: date.day,
+                hour: endHour,
+                minute: endMinute,
+              },
+              { zone: projectTimezone },
+            );
 
             try {
-              let current = DateTime.fromObject(
-                {
-                  year,
-                  month: date.month,
-                  day: date.day,
-                  hour: startHour,
-                  minute: startMinute,
-                },
-                { zone: projectTimezone },
-              );
-              const endTime = DateTime.fromObject(
-                {
-                  year,
-                  month: date.month,
-                  day: date.day,
-                  hour: endHour,
-                  minute: endMinute,
-                },
-                { zone: projectTimezone },
-              );
-
               while (current.toMillis() <= endTime.toMillis()) {
                 await Forma.sun.setDate({ date: current.toJSDate() });
                 const canvas = await Forma.camera.capture({ width, height });
-                gif.addFrame(canvas, { delay: 500 });
+                const ctx = canvas.getContext("2d");
+                if (!ctx) throw new Error("Could not get 2D context from canvas.");
+                const imageData = ctx.getImageData(0, 0, width, height);
+                frames.push({ data: imageData.data, delay: 500 }); // 500ms delay
                 current = current.plus({ minutes: interval });
               }
 
-              await new Promise((resolve, reject) => {
-                gif.on('finished', (blob) => {
-                  saveAs(blob, `Shadow-${MONTHS[date.month - 1]}-${date.day}.gif`);
-                  resolve(null);
-                });
-                gif.on('error', (error) => {
-                  console.error('GIF error:', error);
-                  reject(error);
-                });
-                gif.render();
+              // Use modern-gif to encode
+              const output = await encode({
+                workerUrl,
+                width,
+                height,
+                frames,
               });
+              const gifBlob = new Blob([output], { type: "image/gif" });
+              saveAs(gifBlob, `Shadow-${MONTHS[date.month - 1]}-${date.day}.gif`);
             } finally {
               await Forma.sun.setDate({ date: currentDate });
             }
@@ -137,7 +132,6 @@ export default function ExportButton({
           try {
             for (const date of dates) {
               const dateFolder = zipFolder.folder(`${MONTHS[date.month - 1]}-${date.day}`) as JSZip;
-              
               let current = DateTime.fromObject(
                 {
                   year,
@@ -165,7 +159,6 @@ export default function ExportButton({
                 const canvas = await Forma.camera.capture({ width, height });
                 const data = canvas.toDataURL().split("base64,")[1];
                 dateFolder.file(filename, data, { base64: true });
-
                 current = current.plus({ minutes: interval });
               }
             }

@@ -116,7 +116,7 @@ export default function PreviewButton({
           <Fragment>
             {dates.map((date, index) => (
               <weave-select-option key={index} value={index}>
-                {`${MONTHS[date.month - 1]} ${date.day}`}
+                {`${new Date(new Date().getFullYear(), date.month - 1, date.day).toLocaleString(undefined, { month: 'long' })} ${date.day}`}
               </weave-select-option>
             ))}
           </Fragment>
