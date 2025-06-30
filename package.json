@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "DEV_SERVER=1 vite",
+    "start": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "prettier:check": "yarn prettier --check src",
@@ -16,6 +16,7 @@
     "jszip": "3.10.1",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
+    "modern-gif": "^2.0.4",
     "preact": "^10.20.1"
   },
   "devDependencies": {

@@ -6,6 +6,6 @@ export default defineConfig({
   base: "./",
   plugins: [preact()],
   server: {
-    port: 8081,
-  },
+    port: 8081
+  }
 });
