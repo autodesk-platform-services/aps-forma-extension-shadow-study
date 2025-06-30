@@ -57,7 +57,7 @@ export default function DateSelector({
         <weave-button 
           variant="outlined" 
           onClick={() => onAddDate(month, day)}
-          {...({ disabled: dates.some((d) => d.month === month && d.day === day) } as any)}
+          disabled={dates.some((d) => d.month === month && d.day === day)}
         >
           Add date
         </weave-button>

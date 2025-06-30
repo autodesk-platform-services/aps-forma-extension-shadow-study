@@ -2,7 +2,6 @@ import { Forma } from "forma-embedded-view-sdk/auto";
 import { DateTime } from "luxon";
 import { useState } from "preact/hooks";
 import { Fragment } from "preact";
-import { MONTHS } from "../constants";
 
 function timeout(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -5,6 +5,7 @@ namespace JSX {
       variant?: "outlined" | "flat" | "solid";
       density?: "high" | "medium";
       iconposition?: "left" | "right";
+      disabled?: boolean;
     };
     "weave-select": JSX.HTMLAttributes<HTMLElement> & {
       placeholder?: any;
