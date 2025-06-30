@@ -37,7 +37,7 @@ export default function DateSelector({
         >
           {_.range(1, 13).map((m) => (
             <weave-select-option key={m} value={m}>
-              {new Date(year, m - 1).toLocaleString(undefined, { month: 'long' })}
+              {new Date(year, m - 1).toLocaleString(undefined, { month: "long" })}
             </weave-select-option>
           ))}
         </weave-select>
@@ -54,21 +54,21 @@ export default function DateSelector({
         </weave-select>
       </div>
       <div class="section-content" style={{ marginTop: "5px" }}>
-        <weave-button 
-          variant="outlined" 
+        <weave-button
+          variant="outlined"
           onClick={() => onAddDate(month, day)}
           disabled={dates.some((d) => d.month === month && d.day === day)}
         >
           Add date
         </weave-button>
       </div>
-      
+
       {dates.map((date, index) => (
         <div key={index} class="section-content" style={{ marginTop: "5px" }}>
           <span>{new Date(year, date.month - 1, date.day).toLocaleDateString()}</span>
-          <weave-button 
-            variant="flat" 
-            onClick={() => onRemoveDate(index)} 
+          <weave-button
+            variant="flat"
+            onClick={() => onRemoveDate(index)}
             style={{ minWidth: "24px", padding: "0", marginLeft: "auto" }}
           >
             ✕

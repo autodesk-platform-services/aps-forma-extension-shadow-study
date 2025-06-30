@@ -14,7 +14,7 @@ interface DateEntry {
 
 export default function App() {
   // Default to June 21 - standard reference date for summer solstice
-  const [selectedMonth, setSelectedMonth] = useState(6);  // June
+  const [selectedMonth, setSelectedMonth] = useState(6); // June
   const [selectedDay, setSelectedDay] = useState(21);
   const [isSingleTime, setIsSingleTime] = useState(false);
   const [singleHour, setSingleHour] = useState(12);
@@ -59,7 +59,7 @@ export default function App() {
   return (
     <>
       <h1>Shadow study</h1>
-      <DateSelector 
+      <DateSelector
         month={selectedMonth}
         setMonth={setSelectedMonth}
         day={selectedDay}

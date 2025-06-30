@@ -178,15 +178,12 @@ export default function ExportButton({
   return (
     <div class="section">
       <div class="section-content" style={{ justifyContent: "center" }}>
-        <weave-button 
-          variant="solid" 
-          onClick={onClickExport} 
+        <weave-button
+          variant="solid"
+          onClick={onClickExport}
           data-disabled={dates.length === 0 ? "" : undefined}
         >
-          {isSingleTime 
-            ? "Export image" 
-            : `Export ${isGif ? "animation" : "images"}`
-          }
+          {isSingleTime ? "Export image" : `Export ${isGif ? "animation" : "images"}`}
         </weave-button>
       </div>
     </div>

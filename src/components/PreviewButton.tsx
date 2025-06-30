@@ -108,23 +108,25 @@ export default function PreviewButton({
       <div class="section-content">
         <weave-select
           value={selectedDateIndex}
-          onChange={(event) => setSelectedDateIndex(parseInt((event as CustomEvent).detail.value, 10))}
+          onChange={(event) =>
+            setSelectedDateIndex(parseInt((event as CustomEvent).detail.value, 10))
+          }
           style={{ width: "100%" }}
         >
           <weave-select-option value={-1}>Select date...</weave-select-option>
           <Fragment>
             {dates.map((date, index) => (
               <weave-select-option key={index} value={index}>
-                {`${new Date(new Date().getFullYear(), date.month - 1, date.day).toLocaleString(undefined, { month: 'long' })} ${date.day}`}
+                {`${new Date(new Date().getFullYear(), date.month - 1, date.day).toLocaleString(undefined, { month: "long" })} ${date.day}`}
               </weave-select-option>
             ))}
           </Fragment>
         </weave-select>
       </div>
       <div class="section-content" style={{ marginTop: "5px" }}>
-        <weave-button 
-          variant="outlined" 
-          onClick={onClickPreview} 
+        <weave-button
+          variant="outlined"
+          onClick={onClickPreview}
           data-disabled={selectedDateIndex === -1 ? "" : undefined}
         >
           {isSingleTime ? "Preview time" : "Preview animation"}

@@ -59,14 +59,18 @@ export default function TimeSelector({
 
       {isSingleTime ? (
         <div class="section-content">
-          <span class="row-title" style={{ width: "40px" }}>Time</span>
+          <span class="row-title" style={{ width: "40px" }}>
+            Time
+          </span>
           <weave-select
             value={singleHour}
             onChange={(event) => setSingleHour(parseInt((event as CustomEvent).detail.value, 10))}
             style={{ width: "70px" }}
           >
             {_.range(0, 24).map((value) => (
-              <weave-select-option value={value}>{value.toString().padStart(2, "0")}</weave-select-option>
+              <weave-select-option value={value}>
+                {value.toString().padStart(2, "0")}
+              </weave-select-option>
             ))}
           </weave-select>
           <weave-select
@@ -75,43 +79,57 @@ export default function TimeSelector({
             class="right-aligned-select"
           >
             {_.range(0, 60, 15).map((value) => (
-              <weave-select-option value={value}>{value.toString().padStart(2, "0")}</weave-select-option>
+              <weave-select-option value={value}>
+                {value.toString().padStart(2, "0")}
+              </weave-select-option>
             ))}
           </weave-select>
         </div>
       ) : (
         <>
           <div class="section-content">
-            <span class="row-title" style={{ width: "40px" }}>From</span>
+            <span class="row-title" style={{ width: "40px" }}>
+              From
+            </span>
             <weave-select
               value={startHour}
               onChange={(event) => setStartHour(parseInt((event as CustomEvent).detail.value, 10))}
               style={{ width: "70px" }}
             >
               {_.range(0, 24).map((value) => (
-                <weave-select-option value={value}>{value.toString().padStart(2, "0")}</weave-select-option>
+                <weave-select-option value={value}>
+                  {value.toString().padStart(2, "0")}
+                </weave-select-option>
               ))}
             </weave-select>
             <weave-select
               value={startMinute}
-              onChange={(event) => setStartMinute(parseInt((event as CustomEvent).detail.value, 10))}
+              onChange={(event) =>
+                setStartMinute(parseInt((event as CustomEvent).detail.value, 10))
+              }
               class="right-aligned-select"
             >
               {_.range(0, 60, 15).map((value) => (
-                <weave-select-option value={value}>{value.toString().padStart(2, "0")}</weave-select-option>
+                <weave-select-option value={value}>
+                  {value.toString().padStart(2, "0")}
+                </weave-select-option>
               ))}
             </weave-select>
           </div>
 
           <div class="section-content">
-            <span class="row-title" style={{ width: "40px" }}>To</span>
+            <span class="row-title" style={{ width: "40px" }}>
+              To
+            </span>
             <weave-select
               value={endHour}
               onChange={(event) => setEndHour(parseInt((event as CustomEvent).detail.value, 10))}
               style={{ width: "70px" }}
             >
               {_.range(0, 24).map((value) => (
-                <weave-select-option value={value}>{value.toString().padStart(2, "0")}</weave-select-option>
+                <weave-select-option value={value}>
+                  {value.toString().padStart(2, "0")}
+                </weave-select-option>
               ))}
             </weave-select>
             <weave-select
@@ -120,13 +138,17 @@ export default function TimeSelector({
               class="right-aligned-select"
             >
               {_.range(0, 60, 15).map((value) => (
-                <weave-select-option value={value}>{value.toString().padStart(2, "0")}</weave-select-option>
+                <weave-select-option value={value}>
+                  {value.toString().padStart(2, "0")}
+                </weave-select-option>
               ))}
             </weave-select>
           </div>
 
           <div class="section-content">
-            <span class="row-title" style={{ width: "40px" }}>Every</span>
+            <span class="row-title" style={{ width: "40px" }}>
+              Every
+            </span>
             <weave-select
               value={interval}
               onChange={(event) => setInterval(parseInt((event as CustomEvent).detail.value, 10))}

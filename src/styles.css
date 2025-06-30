@@ -72,7 +72,7 @@ weave-select {
 .section {
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;  /* Light gray divider */
+  border-bottom: 1px solid #e0e0e0; /* Light gray divider */
 }
 
 /* Remove border from the last section */
@@ -104,7 +104,7 @@ weave-select {
 .mode-select {
   width: 115px !important;
   min-width: 115px !important;
-  flex-shrink: 0;  /* Prevent flexbox shrinking */
+  flex-shrink: 0; /* Prevent flexbox shrinking */
 }
 
 .upward-select {
