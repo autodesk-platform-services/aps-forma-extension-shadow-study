@@ -1,0 +1,30 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://*.autodeskforma.com https://*.autodeskforma.eu https://app.autodeskforma.com https://app.autodeskforma.eu"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/fortyguard/:path*",
+      "destination": "https://api.fortyguard.com/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
